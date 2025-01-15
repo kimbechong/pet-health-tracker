@@ -20,40 +20,42 @@
 				<input class="input" type="time" />
 			</div>
 		</div>
-        <!-- create dynamic v-for from list -->
-        <div class="field">
-            <label class="label">Symptom Select</label>
-            <div class="control">
-                <div class="select">
-                    <select>
-                        <option>Vomiting</option>
-                        <option>Other</option>
-                    </select>
-                </div>
-            </div>
-        </div>
 		<div class="field">
 			<label class="label">Symptom</label>
 			<div class="control">
-				<input
-					class="input"
-					type="text"
-					placeholder="Vomiting, fever, itch, sneezing, cough, etc."
-				/>
+				<div class="select">
+					<select v-model="selectedSymptom">
+						<option
+							v-for="symptom in symptoms"
+							:key="symptom.key"
+							:value="symptom.key"
+						>
+							{{ symptom.value }}
+						</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="field" v-if="selectedSymptom === 'other'">
+			<label class="label">Other</label>
+			<div class="control">
+				<input class="input" type="text" placeholder="Symptom" />
 			</div>
 		</div>
 		<div class="field">
 			<label class="label">Notes</label>
 			<div class="control">
-				<textarea class="textarea" placeholder="Textarea"></textarea>
+				<textarea class="textarea" placeholder="Notes"></textarea>
 			</div>
 		</div>
 		<div class="field is-grouped">
 			<div class="control">
-				<button class="button is-link">Submit</button>
+				<button class="button is-link" @click="submit">Submit</button>
 			</div>
 			<div class="control">
-				<button class="button is-link is-light">Cancel</button>
+				<button class="button is-link is-light" @click="cancel">
+					Cancel
+				</button>
 			</div>
 		</div>
 	</section>
@@ -62,6 +64,78 @@
 <script>
 export default {
 	name: 'SymptomForm',
+	data() {
+		return {
+			selectedSymptom: '',
+			symptoms: [
+				{
+					key: 'fatigue',
+					value: 'Fatigue',
+				},
+				{
+					key: 'fever',
+					value: 'Fever',
+				},
+				{
+					key: 'diarreah',
+					value: 'Diarreah',
+				},
+				{
+					key: 'vomiting',
+					value: 'Vomiting',
+				},
+				{
+					key: 'cough',
+					value: 'Cough',
+				},
+				{
+					key: 'sneezing',
+					value: 'Sneezing',
+				},
+				{
+					key: 'itch',
+					value: 'Itching',
+				},
+				{
+					key: 'limp',
+					value: 'Limping',
+				},
+				{
+					key: 'appetite-change',
+					value: 'Appetite Change',
+				},
+				{
+					key: 'difficulty-breathing',
+					value: 'Difficulty Breathing',
+				},
+				{
+					key: 'blood-in-stool',
+					value: 'Blood in Stool',
+				},
+				{
+					key: 'seizures',
+					value: 'Seizures',
+				},
+				{
+					key: 'other',
+					value: 'Other',
+				},
+			],
+		};
+	},
+	methods: {
+		submit() {
+			console.log('submit');
+		},
+		cancel() {
+			console.log('cancel');
+		},
+	},
+	watch: {
+		selectedSymptom() {
+			console.log(this.selectedSymptom);
+		},
+	},
 };
 </script>
 
