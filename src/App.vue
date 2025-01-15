@@ -5,18 +5,20 @@
 		<title>Pet Health Tracker</title>
 	</head>
 	<body>
-		<section class="section">
-			<div class="container">
-				<h1 class="title">Hello World</h1>
-				<p class="subtitle">
-					My first website with <strong>Bulma</strong>!
-				</p>
-			</div>
-		</section>
+        <SymptomForm />
 	</body>
 </template>
 
-<script setup></script>
+<script>
+import SymptomForm from './components/SymptomForm.vue';
+
+export default {
+	name: 'App',
+	components: {
+		SymptomForm,
+	},
+};
+</script>
 
 <style scoped>
 @import 'https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css';
