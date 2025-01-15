@@ -3,6 +3,7 @@ Pet project for Rainbow Fish Tech Collab :rainbow::fish:
 
 ## Tech Stack
 - [Vue 3](https://vuejs.org/)
+- [Vite](https://vite.dev/)
 - [Vitest](https://vitest.dev/)
 - [ESLint](https://eslint.org/)
 
