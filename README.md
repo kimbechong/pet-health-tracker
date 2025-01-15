@@ -6,6 +6,7 @@ Pet project for Rainbow Fish Tech Collab :rainbow::fish:
 - [Vite](https://vite.dev/)
 - [Vitest](https://vitest.dev/)
 - [ESLint](https://eslint.org/)
+- [Bulma](https://bulma.io/)
 
 ## Project Setup
 ### Install Dependencies
