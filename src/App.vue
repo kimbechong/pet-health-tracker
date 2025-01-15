@@ -1,12 +1,9 @@
 <template>
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Pet Health Tracker</title>
-	</head>
-	<body>
-        <SymptomForm />
-	</body>
+	<section class="section">
+		<h1 class="title">Pet Health Tracker</h1>
+        <p class="subtitle is-4">Data-driven pet healthcare</p>
+	</section>
+	<SymptomForm />
 </template>
 
 <script>
@@ -20,6 +17,4 @@ export default {
 };
 </script>
 
-<style scoped>
-@import 'https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css';
-</style>
+<style scoped></style>
