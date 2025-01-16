@@ -8,25 +8,28 @@
 			/>
 			<h2 class="title">New Symptom Entry</h2>
 		</span>
+
 		<div class="field">
 			<label class="label">Date</label>
 			<div class="control">
-				<input class="input" type="date" />
+				<input class="input" type="date" v-model="date" />
 			</div>
 		</div>
+
 		<div class="field">
 			<label class="label">Time</label>
 			<div class="control">
-				<input class="input" type="time" />
+				<input class="input" type="time" v-model="time" />
 			</div>
 		</div>
+
 		<div class="field">
 			<label class="label">Symptom</label>
 			<div class="control">
 				<div class="select">
 					<select v-model="selectedSymptom">
 						<option
-							v-for="symptom in symptoms"
+							v-for="symptom in symptomOptions"
 							:key="symptom.key"
 							:value="symptom.key"
 						>
@@ -36,18 +39,30 @@
 				</div>
 			</div>
 		</div>
+
 		<div class="field" v-if="selectedSymptom === 'other'">
 			<label class="label">Other</label>
 			<div class="control">
-				<input class="input" type="text" placeholder="Symptom" />
+				<input
+					class="input"
+					type="text"
+					placeholder="Symptom"
+					v-model="otherSymptom"
+				/>
 			</div>
 		</div>
+
 		<div class="field">
 			<label class="label">Notes</label>
 			<div class="control">
-				<textarea class="textarea" placeholder="Notes"></textarea>
+				<textarea
+					class="textarea"
+					placeholder="Notes"
+					v-model="notes"
+				></textarea>
 			</div>
 		</div>
+
 		<div class="field is-grouped">
 			<div class="control">
 				<button class="button is-link" @click="submit">Submit</button>
@@ -66,8 +81,12 @@ export default {
 	name: 'SymptomForm',
 	data() {
 		return {
+			date: '',
+			time: '',
 			selectedSymptom: '',
-			symptoms: [
+			otherSymptom: '',
+			notes: '',
+			symptomOptions: [
 				{
 					key: 'fatigue',
 					value: 'Fatigue',
@@ -77,8 +96,8 @@ export default {
 					value: 'Fever',
 				},
 				{
-					key: 'diarreah',
-					value: 'Diarreah',
+					key: 'diarrhea',
+					value: 'Diarrhea',
 				},
 				{
 					key: 'vomiting',
@@ -121,11 +140,27 @@ export default {
 					value: 'Other',
 				},
 			],
+			symptomHistory: [],
 		};
 	},
 	methods: {
 		submit() {
-			console.log('submit');
+			let symptom = '';
+			if (this.selectedSymptom === 'other') {
+				symptom = this.otherSymptom;
+			} else {
+				symptom = this.selectedSymptom;
+			}
+			let symptomEntry = {
+				date: this.date,
+				time: this.time,
+				symptom: symptom,
+				notes: this.notes,
+			};
+			this.symptomHistory.push(symptomEntry);
+			this.symptomHistory.forEach((entry) => {
+				console.log(entry);
+			});
 		},
 		cancel() {
 			console.log('cancel');
